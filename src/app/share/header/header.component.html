@@ -1,0 +1,48 @@
+<div class="header">
+  <div class="header-logo">
+    <img class="hide-mobile" src="assets/img/logo-pc.jpg" alt="自律的你LOGO">
+    <img class="hide-pc" src="assets/img/logo-mobile.jpg" alt="自律的你LOGO">
+  </div>
+  <div class="header-right">
+    <a class="hide-pc" nz-dropdown [nzDropdownMenu]="menu">
+      首页
+      <i nz-icon nzType="caret-down" nzTheme="outline"></i>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu nzSelectable>
+          <li nz-menu-item>首页</li>
+          <li nz-menu-item>分享</li>
+        </ul>
+      </nz-dropdown-menu>
+    </a>
+
+    <ul class="hide-mobile" nz-menu nzMode="horizontal">
+      <li nz-menu-item>首页</li>
+      <li nz-menu-item>分享</li>
+    </ul>
+
+    <div class="header-right-ops">
+      <div class="search-wrapper">
+        <nz-input-group [nzSuffix]="suffixIconSearch">
+          <ng-template #suffixIconSearch>
+            <i nz-icon nzType="search"></i>
+          </ng-template>
+          <input type="text" nz-input placeholder="全站搜索"/>
+        </nz-input-group>
+      </div>
+      <button class="edit-article hide-mobile" nzSize="small" nz-button nzType="primary">写文章</button>
+      <div class="hide-mobile">
+        <button nzSize="small" nz-button nzType="link">登录</button>
+        <button nzSize="small" nz-button nzType="link">注册</button>
+      </div>
+      <a class="hide-pc mobile-user" nz-dropdown [nzDropdownMenu]="menu2">
+        <i nz-icon nzType="user"></i>
+        <nz-dropdown-menu #menu2="nzDropdownMenu">
+          <ul nz-menu nzSelectable>
+            <li nz-menu-item>登录</li>
+            <li nz-menu-item>注册</li>
+          </ul>
+        </nz-dropdown-menu>
+      </a>
+    </div>
+  </div>
+</div>

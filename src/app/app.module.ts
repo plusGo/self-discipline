@@ -9,6 +9,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
 import {ROUTER_CONFIG} from './app.route';
 import {IndexModule} from './page/index/index.module';
+import {CoreModule} from './core/core.module';
 
 registerLocaleData(zh);
 
@@ -20,6 +21,7 @@ registerLocaleData(zh);
     BrowserModule,
     BrowserAnimationsModule,
     IndexModule,
+    CoreModule,
     RouterModule.forRoot(ROUTER_CONFIG, {
       useHash: false
     })
