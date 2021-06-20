@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
-import { DelonFormModule } from '@delon/form';
+import {DelonFormModule} from '@delon/form';
+import {HttpClientPlusModule} from 'ng-http-plus';
 
 @NgModule({
   declarations: [],
   imports: [
-    HttpClientModule,
+    HttpClientPlusModule,
     DelonFormModule.forRoot()
   ]
 })

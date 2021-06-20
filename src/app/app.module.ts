@@ -8,8 +8,9 @@ import zh from '@angular/common/locales/zh';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
 import {ROUTER_CONFIG} from './app.route';
-import {IndexModule} from './page/index/index.module';
 import {CoreModule} from './core/core.module';
+import {NormalModule} from './normal/normal.module';
+import {ShareModule} from './share/share.module';
 
 registerLocaleData(zh);
 
@@ -20,8 +21,9 @@ registerLocaleData(zh);
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    IndexModule,
     CoreModule,
+    NormalModule,
+    ShareModule,
     RouterModule.forRoot(ROUTER_CONFIG, {
       useHash: false
     })

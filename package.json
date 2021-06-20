@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start:local": "ng serve --proxy-config proxy.local.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -20,8 +20,10 @@
     "@angular/platform-browser-dynamic": "~11.2.14",
     "@angular/router": "~11.2.14",
     "@delon/form": "^11.10.2",
+    "ng-http-plus": "^0.0.3",
     "ng-zorro-antd": "^11.4.1",
     "rxjs": "~6.6.0",
+    "stream-plus": "^0.0.2",
     "tailwindcss": "^2.1.4",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

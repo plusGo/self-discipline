@@ -4,12 +4,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DelonFormModule} from '@delon/form';
 import {NzButtonModule} from 'ng-zorro-antd/button';
 import {HeaderComponent} from './header/header.component';
-import {LayoutComponent} from './layout/layout.component';
 import {RouterModule} from '@angular/router';
 import {NzMenuModule} from 'ng-zorro-antd/menu';
 import {NzInputModule} from 'ng-zorro-antd/input';
 import {NzIconModule} from 'ng-zorro-antd/icon';
 import {NzDropDownModule} from 'ng-zorro-antd/dropdown';
+import {RegisterComponent} from './register/register.component';
 
 
 export const ZORRO_MODULES = [
@@ -19,7 +19,7 @@ export const ZORRO_MODULES = [
   NzIconModule,
   NzDropDownModule
 ];
-export const COMPONENTS = [HeaderComponent, LayoutComponent];
+export const COMPONENTS = [HeaderComponent, RegisterComponent];
 
 @NgModule({
   declarations: [...COMPONENTS],
@@ -39,7 +39,8 @@ export const COMPONENTS = [HeaderComponent, LayoutComponent];
     DelonFormModule,
     ...ZORRO_MODULES,
     ...COMPONENTS
-  ]
+  ],
+  entryComponents: [RegisterComponent]
 })
 export class ShareModule {
 }

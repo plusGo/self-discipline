@@ -5837,6 +5837,13 @@ neo-async@^2.5.0, neo-async@^2.6.1, neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
+ng-http-plus@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/ng-http-plus/-/ng-http-plus-0.0.3.tgz#c67c3df53a20be47469706e11a1ed92aa5b689c9"
+  integrity sha512-dg9jSZzDSbYrZVtMPi6i7Q75ahxZUHPMuSQjsCLla1qD15E9cuxEhsiIetgNBiAkK3wik/tJEEs/HWnR5qJ1eA==
+  dependencies:
+    tslib "^1.9.0"
+
 ng-zorro-antd@^11.4.1:
   version "11.4.1"
   resolved "https://registry.yarnpkg.com/ng-zorro-antd/-/ng-zorro-antd-11.4.1.tgz#ba4c564ece3c2a0205c8841dcee828be4b6de82d"
@@ -8010,6 +8017,13 @@ stream-http@^2.7.2:
     readable-stream "^2.3.6"
     to-arraybuffer "^1.0.0"
     xtend "^4.0.0"
+
+stream-plus@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/stream-plus/-/stream-plus-0.0.2.tgz#d912707b0c8dba90217a708247d8468d7648a254"
+  integrity sha512-x0nnjS7R0WeTNF1XQqwPadfSMV8pstmoYu/Kao5bMtPe71C2KH6aEesvW6e6f8PErYR1RLXdugzvkQCBdLiC4w==
+  dependencies:
+    tslib "^1.9.0"
 
 stream-shift@^1.0.0:
   version "1.0.1"
