@@ -10,6 +10,10 @@ import {NzInputModule} from 'ng-zorro-antd/input';
 import {NzIconModule} from 'ng-zorro-antd/icon';
 import {NzDropDownModule} from 'ng-zorro-antd/dropdown';
 import {RegisterComponent} from './register/register.component';
+import {NzPopoverModule} from 'ng-zorro-antd/popover';
+import {NzFormModule} from 'ng-zorro-antd/form';
+import {NzSelectModule} from 'ng-zorro-antd/select';
+import {NzUploadModule} from 'ng-zorro-antd/upload';
 
 
 export const ZORRO_MODULES = [
@@ -17,7 +21,11 @@ export const ZORRO_MODULES = [
   NzMenuModule,
   NzInputModule,
   NzIconModule,
-  NzDropDownModule
+  NzDropDownModule,
+  NzPopoverModule,
+  NzFormModule,
+  NzSelectModule,
+  NzUploadModule
 ];
 export const COMPONENTS = [HeaderComponent, RegisterComponent];
 

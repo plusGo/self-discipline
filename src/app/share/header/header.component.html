@@ -29,7 +29,9 @@
           <input type="text" nz-input placeholder="全站搜索"/>
         </nz-input-group>
       </div>
-      <button class="edit-article hide-mobile" nzSize="small" nz-button nzType="primary">写文章</button>
+      <a [routerLink]="['/editor/drafts/new']">
+        <button class="edit-article hide-mobile" nzSize="small" nz-button nzType="primary">写文章</button>
+      </a>
       <div class="hide-mobile">
         <button nzSize="small" nz-button nzType="link">登录</button>
         <button (click)="openRegister()" nzSize="small" nz-button nzType="link">注册</button>

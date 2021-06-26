@@ -1,0 +1,51 @@
+<header class="editor-header">
+  <div class="left-box"></div>
+  <input [(ngModel)]="article.title" maxlength="80" class="editor-title-input" type="text"/>
+  <div class="right-box">
+    <div class="status-text"></div>
+    <button nz-button nzType="primary"
+            nz-popover
+            nzPopoverTitle="发布文章"
+            nzPopoverTrigger="click"
+            [nzPopoverContent]="contentTemplate">发布
+    </button>
+    <ng-template #contentTemplate>
+      <div class="submit-panel">
+        <form nz-form [formGroup]="form">
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" nzRequired nzFor="category">分类</nz-form-label>
+            <nz-form-control [nzSm]="14">
+              <nz-select formControlName="category" id="category">
+                <nz-option nzValue="frontend" nzLabel="前端"></nz-option>
+                <nz-option nzValue="backend" nzLabel="后端"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6"  nzFor="headImageId">文章封面</nz-form-label>
+            <nz-form-control [nzSm]="14">
+              <nz-upload
+                nzListType="picture-card"
+                [nzShowUploadList]="false"
+                [nzBeforeUpload]="beforeUpload"
+                (nzChange)="handleChange($event)"
+              >
+                <ng-container *ngIf="!form.value.headImageId">
+                  <i class="upload-icon" nz-icon [nzType]="uploading ? 'loading' : 'plus'"></i>
+                  <div class="ant-upload-text">Upload</div>
+                </ng-container>
+                <img *ngIf="form.value.headImageId" [src]="form.value.headImageId" style="width: 100%" />
+              </nz-upload>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+        {{form?.value | json}}
+      </div>
+      <a>Close</a>
+    </ng-template>
+  </div>
+</header>
+<main #main>
+
+</main>
+{{article | json}}

@@ -1,6 +1,6 @@
 @import "variable";
 @import "util";
-
+@import "editor";
 .hide-mobile {
   @media only screen and (max-width: 767px) {
     & {
