@@ -33,7 +33,7 @@
         <button class="edit-article hide-mobile" nzSize="small" nz-button nzType="primary">写文章</button>
       </a>
       <div class="hide-mobile">
-        <button nzSize="small" nz-button nzType="link">登录</button>
+        <button (click)="openLogin()" nzSize="small" nz-button nzType="link">登录</button>
         <button (click)="openRegister()" nzSize="small" nz-button nzType="link">注册</button>
       </div>
       <a class="hide-pc mobile-user" nz-dropdown [nzDropdownMenu]="menu2">

@@ -21,17 +21,23 @@ export class RegisterValidator {
 
   }
 
-  emailValidator = (value: SFValue): ErrorData[] | Observable<ErrorData[]> => {
-    value = value?.trim();
-    if (!ValidatorReg.邮箱.test(value)) {
-      return [{keyword: 'email', message: '请输入正确的邮箱'}]
-    }
-    return this.registerService.emailExists(value).pipe(map(response => {
-      if (response.status === 200) {
-        return [];
-      } else {
-        return [{keyword: 'email', message: '邮箱已存在'}];
+  emailValidator(async = true): (value: SFValue) => ErrorData[] | Observable<ErrorData[]> {
+    return (value: SFValue): ErrorData[] | Observable<ErrorData[]> => {
+      value = value?.trim();
+      if (!ValidatorReg.邮箱.test(value)) {
+        return [{keyword: 'email', message: '请输入正确的邮箱'}]
       }
-    }));
+      if (!async) {
+        return [];
+      }
+      return this.registerService.emailExists(value).pipe(map(response => {
+        if (response.status === 200) {
+          return [];
+        } else {
+          return [{keyword: 'email', message: '邮箱已存在'}];
+        }
+      }));
+    };
   }
+
 }

@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import {fromEvent, Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {HeaderComponent} from '../../share/header/header.component';
+import {HeaderComponent} from '../../share/component/header/header.component';
 
 @Component({
   selector: 'app-layout',

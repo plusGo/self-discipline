@@ -1,12 +1,12 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {SFComponent, SFSchema, SFStringWidgetSchema} from '@delon/form';
-import {RegisterValidator} from '../../core/validator/register.validator';
-import {VerifyCodeService} from '../../core/service/verify-code.service';
+import {RegisterValidator} from '../../../core/validator/register.validator';
+import {VerifyCodeService} from '../../../core/service/verify-code.service';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {Subject, timer} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {RegisterService} from '../../core/service/register.service';
-import {PasswordService} from '../../core/service/password.service';
+import {RegisterService} from '../../../core/service/register.service';
+import {PasswordService} from '../../../core/service/password.service';
 import {NzModalRef} from 'ng-zorro-antd/modal';
 
 @Component({
@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
           maxLength: 255,
           ui: {
             placeholder: '请输入您的邮箱',
-            validator: this.registerValidator.emailValidator
+            validator: this.registerValidator.emailValidator(true)
           } as SFStringWidgetSchema
         },
         verifyCode: {
