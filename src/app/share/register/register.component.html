@@ -13,8 +13,15 @@
       />
     </nz-input-group>
     <ng-template #suffixIconButton>
-      <button [disabled]="!form?.value?.email" (click)="sendEmailVerifyCode()" nz-button nzType="dashed" nzSearch>
-        获取验证码
+      <button [nzLoading]="state.sendingVerifyCode" [disabled]="!form?.value?.email || state.verifyCodeActionDuration"
+              (click)="sendEmailVerifyCode()"
+              nz-button nzType="dashed" nzSearch>
+        <ng-container *ngIf="!state.verifyCodeActionDuration">
+          获取验证码
+        </ng-container>
+        <ng-container *ngIf="state.verifyCodeActionDuration">
+          {{state.verifyCodeActionDuration}}秒
+        </ng-container>
       </button>
     </ng-template>
   </ng-template>

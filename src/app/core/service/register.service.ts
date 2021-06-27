@@ -4,7 +4,9 @@ import {UserPo} from '../../model/po/user.po';
 import {EmailRegisterRequest} from '../../model/request/email-register.request';
 import {HttpPlusClient} from 'ng-http-plus';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RegisterService {
   public emailRegister(emailRegisterRequest: EmailRegisterRequest): Observable<UserPo> {
     return HttpPlusClient.builder()
