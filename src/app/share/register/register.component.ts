@@ -5,6 +5,9 @@ import {VerifyCodeService} from '../../core/service/verify-code.service';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {Subject, timer} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
+import {RegisterService} from '../../core/service/register.service';
+import {PasswordService} from '../../core/service/password.service';
+import {NzModalRef} from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +23,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
   state = {
     sendingVerifyCode: false,
     verifyCodeActionDuration: null,
-    actionDurationCountSub: null
+    actionDurationCountSub: null,
+    registering: false
   };
 
   @ViewChild(SFComponent)
@@ -29,14 +33,17 @@ export class RegisterComponent implements OnInit, OnDestroy {
   private readonly destroy$ = new Subject<void>();
 
   constructor(private verifyCodeService: VerifyCodeService,
+              private registerValidator: RegisterValidator,
+              private registerService: RegisterService,
+              private modalRef: NzModalRef,
               private messageService: NzMessageService) {
     this.schema = {
       properties: {
         nickName: {
           type: 'string',
           title: '昵称',
-          maxLength: 55,
-          minLength: 2,
+          maxLength: 16,
+          minLength: 4,
           ui: {
             placeholder: '请输入您的昵称',
             validator: RegisterValidator.nickNameValidator
@@ -47,7 +54,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
           title: '邮箱',
           maxLength: 255,
           ui: {
-            placeholder: '请输入您的邮箱'
+            placeholder: '请输入您的邮箱',
+            validator: this.registerValidator.emailValidator
           } as SFStringWidgetSchema
         },
         verifyCode: {
@@ -62,6 +70,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
           title: '密码',
           maxLength: 255,
           ui: {
+            type: 'password',
             placeholder: '请输入您的密码'
           } as SFStringWidgetSchema
         },
@@ -110,5 +119,22 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next(null);
     this.destroy$.complete();
+  }
+
+  forbiddenSendVerifyCode(): boolean {
+    return !this.formRef.getProperty('/email').valid || this.state.verifyCodeActionDuration;
+  }
+
+  register(): void {
+    const value = {
+      ...this.formRef.value,
+      password: PasswordService.encrypt(this.formRef.value.password)
+    };
+    this.state.registering = true;
+    this.registerService.emailRegister(value).subscribe(() => {
+      this.messageService.success('注册成功');
+      this.modalRef.close(true);
+      this.state.registering = false;
+    }, () => this.state.registering = false)
   }
 }

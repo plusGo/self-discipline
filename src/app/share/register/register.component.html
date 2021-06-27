@@ -13,7 +13,7 @@
       />
     </nz-input-group>
     <ng-template #suffixIconButton>
-      <button [nzLoading]="state.sendingVerifyCode" [disabled]="!form?.value?.email || state.verifyCodeActionDuration"
+      <button [nzLoading]="state.sendingVerifyCode" [disabled]="forbiddenSendVerifyCode()"
               (click)="sendEmailVerifyCode()"
               nz-button nzType="dashed" nzSearch>
         <ng-container *ngIf="!state.verifyCodeActionDuration">
@@ -26,5 +26,6 @@
     </ng-template>
   </ng-template>
 </sf>
-<button nz-button nzType="primary" nzBlock [disabled]="!form?.valid">注册</button>
-{{form?.value | json}}
+<button [nzLoading]="state.registering" (click)="register()" nz-button nzType="primary" nzBlock
+        [disabled]="!form?.valid">注册
+</button>
