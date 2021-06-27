@@ -1,10 +1,12 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import * as bytemd from 'bytemd';
+// import * as bytemd from 'bytemd';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ArticlePo} from '../../model/po/article.po';
 import {NzUploadFile} from 'ng-zorro-antd/upload';
 import {AttachmentService} from '../../core/service/attachment.service';
-// declare const bytemd: any;
+import {NzMessageService} from 'ng-zorro-antd/message';
+
+declare const bytemd: any;
 
 declare const bytemdPluginGfm: any;
 declare const bytemdPluginHighlight: any;
@@ -23,8 +25,8 @@ export class EditorComponent implements OnInit, AfterViewInit {
   uploading = false;
 
   constructor(private fb: FormBuilder,
+              private messageService: NzMessageService,
               private attachmentService: AttachmentService) {
-    console.log(1)
     this.form = this.fb.group({
       title: null,
       markContent: null,
@@ -59,7 +61,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
         this.uploading = true;
         break;
       case 'done':
-        debugger
+        this.uploading = false;
         break;
       case 'error':
         this.uploading = false;
@@ -68,8 +70,11 @@ export class EditorComponent implements OnInit, AfterViewInit {
   }
 
   beforeUpload = (file: NzUploadFile): boolean => {
-    debugger
-    this.attachmentService.upload(file.originFileObj as any);
+    this.attachmentService.uploadSingle(file).subscribe(res => {
+      this.messageService.success('上传成功');
+      debugger
+      this.form.patchValue({headImageId: res.id})
+    });
     return false;
   };
 

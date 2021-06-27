@@ -14,6 +14,7 @@ import {NzPopoverModule} from 'ng-zorro-antd/popover';
 import {NzFormModule} from 'ng-zorro-antd/form';
 import {NzSelectModule} from 'ng-zorro-antd/select';
 import {NzUploadModule} from 'ng-zorro-antd/upload';
+import {AttachmentImgPipe} from './pipe/attachment-img.pipe';
 
 
 export const ZORRO_MODULES = [
@@ -28,9 +29,10 @@ export const ZORRO_MODULES = [
   NzUploadModule
 ];
 export const COMPONENTS = [HeaderComponent, RegisterComponent];
+export const PIPES = [AttachmentImgPipe];
 
 @NgModule({
-  declarations: [...COMPONENTS],
+  declarations: [...COMPONENTS, ...PIPES],
   imports: [
     CommonModule,
     FormsModule,
@@ -46,7 +48,8 @@ export const COMPONENTS = [HeaderComponent, RegisterComponent];
     ReactiveFormsModule,
     DelonFormModule,
     ...ZORRO_MODULES,
-    ...COMPONENTS
+    ...COMPONENTS,
+    ...PIPES
   ],
   entryComponents: [RegisterComponent]
 })
