@@ -34,7 +34,7 @@
                   <i class="upload-icon" nz-icon [nzType]="uploading ? 'loading' : 'plus'"></i>
                   <div class="ant-upload-text">Upload</div>
                 </ng-container>
-                <img *ngIf="form.value.headImageId" [src]="form.value.headImageId | attachmentImg | async" style="width: 100%"/>
+                <app-auth-img style="width: 100%" [attachmentId]="form.value.headImageId"></app-auth-img>
               </nz-upload>
             </nz-form-control>
           </nz-form-item>

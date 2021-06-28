@@ -16,6 +16,7 @@ import {NzSelectModule} from 'ng-zorro-antd/select';
 import {NzUploadModule} from 'ng-zorro-antd/upload';
 import {AttachmentImgPipe} from './pipe/attachment-img.pipe';
 import {LoginComponent} from './component/login/login.component';
+import {AuthImgComponent} from './component/auth-img/auth-img.component';
 
 
 export const ZORRO_MODULES = [
@@ -29,7 +30,7 @@ export const ZORRO_MODULES = [
   NzSelectModule,
   NzUploadModule
 ];
-export const COMPONENTS = [HeaderComponent, RegisterComponent, LoginComponent];
+export const COMPONENTS = [HeaderComponent, RegisterComponent, AuthImgComponent, LoginComponent];
 export const PIPES = [AttachmentImgPipe];
 
 @NgModule({
