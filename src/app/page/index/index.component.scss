@@ -1,0 +1,24 @@
+@import "../../../style/variable";
+
+:host {
+  display: flex;
+  justify-content: space-between;
+  width: 960px;
+  margin: 0 auto;
+  position: relative;
+  padding: 12px 0 0 0;
+
+  .article-wrapper {
+    width: 700px;
+    background: $whiteColor;
+    border-radius: 4px;
+    min-height: 400px;
+  }
+
+  .right-wrapper {
+    width: 240px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
