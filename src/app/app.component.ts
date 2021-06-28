@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {HttpPlusConfig} from 'ng-http-plus';
 
 @Component({
@@ -7,16 +7,25 @@ import {HttpPlusConfig} from 'ng-http-plus';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  private static AUTHORIZATION = 'Authorization';
 
   constructor() {
     HttpPlusConfig.builder()
       .baseUrl('')
       .addInterceptor({
         request: (req) => {
-          console.log('请求:' + req);
+          const token = window.sessionStorage.getItem(AppComponent.AUTHORIZATION);
+          if (!token) {
+            return req;
+
+          }
+          return req.clone({headers: req.headers.set(AppComponent.AUTHORIZATION, token)});
         },
         response: (res) => {
-          console.log('回复:' + res);
+          const token = (res as any).headers.get(AppComponent.AUTHORIZATION);
+          if (token) {
+            window.sessionStorage.setItem(AppComponent.AUTHORIZATION, token);
+          }
         }
       });
   }

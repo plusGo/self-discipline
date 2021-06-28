@@ -9,7 +9,8 @@ import {NzMessageModule} from 'ng-zorro-antd/message';
     HttpClientPlusModule,
     DelonFormModule.forRoot(),
     NzMessageModule
-  ]
+  ],
+  providers: []
 })
 export class CoreModule {
 }

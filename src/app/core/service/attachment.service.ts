@@ -13,9 +13,6 @@ export class AttachmentService {
     files.forEach(file => formData.append('files', file));
     return HttpPlusClient.builder()
       .url('/api/attachments/upload')
-      .headers({
-        'Authorization': 'BearereyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJ1c2VySWRcIjpcIjAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwXCIsXCJlbWFpbFwiOlwibWhsQHFxLmNvbVwiLFwibmlja05hbWVcIjpcIui2hee6p-euoeeQhuWRmFwifSIsImp0aSI6IjAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwIiwiaWF0IjoxNjI0Nzk2MTYzLCJleHAiOjE2MjQ4MDMzNjN9.B24Ns8panZfqJY89I9q02BGRfrfc5Gqt8aDhY2ZZGrU'
-      })
       .body(formData)
       .post();
   }
@@ -29,9 +26,6 @@ export class AttachmentService {
   download(attachmentId: string): Observable<Blob> {
     return HttpPlusClient.builder()
       .url(`/api/attachments/download/${attachmentId}`)
-      .headers({
-        'Authorization': 'BearereyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJ1c2VySWRcIjpcIjAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwXCIsXCJlbWFpbFwiOlwibWhsQHFxLmNvbVwiLFwibmlja05hbWVcIjpcIui2hee6p-euoeeQhuWRmFwifSIsImp0aSI6IjAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwIiwiaWF0IjoxNjI0Nzk2MTYzLCJleHAiOjE2MjQ4MDMzNjN9.B24Ns8panZfqJY89I9q02BGRfrfc5Gqt8aDhY2ZZGrU'
-      })
       .responseType(HttpResponseType.BLOB)
       .get();
   }
