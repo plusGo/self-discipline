@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpPlusClient, HttpResponseType} from 'ng-http-plus';
-import {AttachmentPo} from '../../model/po/attachment.po';
+import {AttachmentPo} from '../../../model/po/attachment.po';
 import {map} from 'rxjs/operators';
 import {NzUploadFile} from 'ng-zorro-antd/upload';
 import {NzSafeAny} from 'ng-zorro-antd/core/types';
@@ -27,6 +27,13 @@ export class AttachmentService {
     return HttpPlusClient.builder()
       .url(`/api/attachments/download/${attachmentId}`)
       .responseType(HttpResponseType.BLOB)
+      .get();
+  }
+
+  base64(attachmentId: string): Observable<String> {
+    return HttpPlusClient.builder()
+      .url(`/api/attachments/base64/${attachmentId}`)
+      .responseType(HttpResponseType.TEXT)
       .get();
   }
 }

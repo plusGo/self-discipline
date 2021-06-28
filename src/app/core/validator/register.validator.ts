@@ -2,7 +2,7 @@ import {Observable} from 'rxjs';
 import {ErrorData} from '@delon/form/src/errors';
 import {SFValue} from '@delon/form/src/interface';
 import {ValidatorReg} from '../constant/validator-reg.const';
-import {RegisterService} from '../service/register.service';
+import {RegisterService} from '../service/biz/register.service';
 import {map} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 

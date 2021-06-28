@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpPlusClient} from 'ng-http-plus';
-import {UserTokenDto} from '../../model/dto/user-token.dto';
-import {EmailPasswordRequest} from '../../model/request/email-password.request';
+import {UserTokenDto} from '../../../model/dto/user-token.dto';
+import {EmailPasswordRequest} from '../../../model/request/email-password.request';
 
 @Injectable({
   providedIn: 'root'

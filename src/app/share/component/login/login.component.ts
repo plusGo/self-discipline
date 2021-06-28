@@ -4,8 +4,8 @@ import {Subject} from 'rxjs';
 import {RegisterValidator} from '../../../core/validator/register.validator';
 import {NzModalRef} from 'ng-zorro-antd/modal';
 import {NzMessageService} from 'ng-zorro-antd/message';
-import {PasswordService} from '../../../core/service/password.service';
-import {LoginService} from '../../../core/service/login.service';
+import {PasswordService} from '../../../core/service/biz/password.service';
+import {LoginService} from '../../../core/service/biz/login.service';
 
 @Component({
   selector: 'app-login',

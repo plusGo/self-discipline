@@ -1,5 +1,13 @@
-import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {AttachmentService} from '../../../core/service/attachment.service';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges
+} from '@angular/core';
+import {AttachmentService} from '../../../core/service/biz/attachment.service';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 @Component({
@@ -16,29 +24,22 @@ export class AuthImgComponent implements OnInit, OnChanges {
   src: SafeResourceUrl = null;
 
   constructor(private attachmentService: AttachmentService,
-              private domSanitizer: DomSanitizer) {
+              private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.attachmentId) {
+    if (changes.attachmentId && this.attachmentId) {
       this.load();
     }
   }
 
   private load(): void {
-    this.attachmentService.download(this.attachmentId).subscribe(res => {
-      this.src = this.domSanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(res));
-
-      // const fileReader = new FileReader();
-      // window.URL.createObjectURL(res);
-      // fileReader.readAsDataURL(res);
-      // fileReader.onload = (e) => {
-      //   this.domSanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(res))
-      //   this.src = e.target.result;
-      // };
+    this.attachmentService.base64(this.attachmentId).subscribe(base64 => {
+      this.src = `data:image/png;base64,${base64}`;
+      this.changeDetectorRef.markForCheck();
     });
   }
 }

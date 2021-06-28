@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {CommonResponseDto} from '../../model/dto/common-response.dto';
+import {CommonResponseDto} from '../../../model/dto/common-response.dto';
 import {HttpPlusClient} from 'ng-http-plus';
 
 @Injectable({

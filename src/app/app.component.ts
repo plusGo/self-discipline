@@ -7,7 +7,7 @@ import {HttpPlusConfig} from 'ng-http-plus';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  private static AUTHORIZATION = 'Authorization';
+   static AUTHORIZATION = 'Authorization';
 
   constructor() {
     HttpPlusConfig.builder()

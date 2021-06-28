@@ -1,12 +1,12 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {SFComponent, SFSchema, SFStringWidgetSchema} from '@delon/form';
 import {RegisterValidator} from '../../../core/validator/register.validator';
-import {VerifyCodeService} from '../../../core/service/verify-code.service';
+import {VerifyCodeService} from '../../../core/service/biz/verify-code.service';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {Subject, timer} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {RegisterService} from '../../../core/service/register.service';
-import {PasswordService} from '../../../core/service/password.service';
+import {RegisterService} from '../../../core/service/biz/register.service';
+import {PasswordService} from '../../../core/service/biz/password.service';
 import {NzModalRef} from 'ng-zorro-antd/modal';
 
 @Component({

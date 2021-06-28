@@ -1,10 +1,11 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 // import * as bytemd from 'bytemd';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ArticlePo} from '../../model/po/article.po';
 import {NzUploadFile} from 'ng-zorro-antd/upload';
-import {AttachmentService} from '../../core/service/attachment.service';
+import {AttachmentService} from '../../core/service/biz/attachment.service';
 import {NzMessageService} from 'ng-zorro-antd/message';
+import {ArticleService} from '../../core/service/biz/article.service';
 
 declare const bytemd: any;
 
@@ -20,17 +21,20 @@ export class EditorComponent implements OnInit, AfterViewInit {
   @ViewChild('main') mainRef: ElementRef;
   form: FormGroup;
 
-  article: ArticlePo = {};
 
   uploading = false;
+  submiting = false;
 
   constructor(private fb: FormBuilder,
               private messageService: NzMessageService,
+              private articleService: ArticleService,
               private attachmentService: AttachmentService) {
     this.form = this.fb.group({
-      title: null,
+      title: [null, [Validators.required]],
       markContent: null,
-      category: null,
+      briefContent: [null, [Validators.required]],
+      category: [null, [Validators.required]],
+      tags: [null, [Validators.required]],
       headImageId: null
     })
   }
@@ -50,32 +54,30 @@ export class EditorComponent implements OnInit, AfterViewInit {
     });
 
     editor.$on('change', (e) => {
-      this.article.markContent = e.detail.value;
+      this.form.patchValue({markContent: e.detail.value});
     });
-  }
-
-  handleChange(info: { file: NzUploadFile }): void {
-
-    switch (info.file.status) {
-      case 'uploading':
-        this.uploading = true;
-        break;
-      case 'done':
-        this.uploading = false;
-        break;
-      case 'error':
-        this.uploading = false;
-        break;
-    }
   }
 
   beforeUpload = (file: NzUploadFile): boolean => {
+    this.uploading = true;
     this.attachmentService.uploadSingle(file).subscribe(res => {
       this.messageService.success('上传成功');
-      debugger
-      this.form.patchValue({headImageId: res.id})
-    });
+      this.form.patchValue({headImageId: res.id});
+      this.uploading = false;
+
+    }, () => this.uploading = false);
     return false;
   };
 
+  submit(): void {
+    const data = {
+      ...this.form.value,
+      tags: this.form.value.tags.join(',')
+    };
+    this.submiting = true;
+    this.articleService.save(data).subscribe(res => {
+      this.submiting = false;
+      this.messageService.success('发布成功');
+    }, () => this.submiting = false);
+  }
 }

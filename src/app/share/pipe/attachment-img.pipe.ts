@@ -1,5 +1,5 @@
 import {ElementRef, Pipe, PipeTransform} from '@angular/core';
-import {AttachmentService} from '../../core/service/attachment.service';
+import {AttachmentService} from '../../core/service/biz/attachment.service';
 import {Observable, Subject} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {NzSafeAny} from 'ng-zorro-antd/core/types';
