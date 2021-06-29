@@ -15,7 +15,7 @@ export class ArticleService {
       .post();
   }
 
-  findPage(): Observable<JpaPageDto> {
+  findPage(): Observable<JpaPageDto<ArticlePo>> {
     return HttpPlusClient.builder()
       .url(`/api/articles/page`)
       .body({})
