@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ArticleBriefDto} from '../../../model/dto/article-brief.dto';
 
 @Component({
   selector: 'app-article-list-brief',
@@ -8,6 +9,8 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
   preserveWhitespaces: true
 })
 export class ArticleListBriefComponent implements OnInit {
+  @Input()
+  articleBrief: ArticleBriefDto;
 
   constructor() {
   }

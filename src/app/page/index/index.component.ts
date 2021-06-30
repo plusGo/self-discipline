@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ArticleService} from '../../core/service/biz/article.service';
+import {ArticleBriefDto} from '../../model/dto/article-brief.dto';
 
 @Component({
   selector: 'app-index',
@@ -8,8 +9,10 @@ import {ArticleService} from '../../core/service/biz/article.service';
 })
 export class IndexComponent implements OnInit {
   pageIndex = 0;
+  articleBriefs: ArticleBriefDto[] = [];
 
-  constructor(private articleService: ArticleService) {
+  constructor(private articleService: ArticleService,
+              private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -17,9 +20,10 @@ export class IndexComponent implements OnInit {
   }
 
   loadMore(index = 0): void {
-    this.articleService.findPage().subscribe(res => {
-      debugger;
-    })
+    this.articleService.findBriefList(index).subscribe(res => {
+      this.articleBriefs = res;
+      this.changeDetectorRef.markForCheck();
+    });
   }
 
 }
