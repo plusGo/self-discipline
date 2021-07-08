@@ -1,5 +1,9 @@
 <div class="article-wrapper">
-  <app-article-list-brief [articleBrief]="articleBrief" *ngFor="let articleBrief of articleBriefs"></app-article-list-brief>
+  <nz-skeleton *ngIf="!articleBriefs.length"></nz-skeleton>
+  <ng-container *ngIf="articleBriefs.length">
+    <app-article-list-brief [articleBrief]="articleBrief"
+                            *ngFor="let articleBrief of articleBriefs"></app-article-list-brief>
+  </ng-container>
 </div>
 <div class="right-wrapper">
 </div>

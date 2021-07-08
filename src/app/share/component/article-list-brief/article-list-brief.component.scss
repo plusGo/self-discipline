@@ -1,9 +1,5 @@
 @import "../../../../style/variable";
 
-$titleColor: $fontColor;
-$secondaryColor: #4e5969;
-$infoColor: #86909c;
-
 :host {
   position: relative;
   background: $whiteColor;
@@ -12,6 +8,7 @@ $infoColor: #86909c;
   flex-direction: column;
   align-items: flex-start;
   border-bottom: 1px solid $lightBorderColor;
+  cursor: pointer;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.02);
@@ -19,16 +16,9 @@ $infoColor: #86909c;
 
   .meta-info {
     color: $infoColor;
+    display: flex;
   }
 
-  .tag-list {
-    display: flex;
-    height: 22px;
-    overflow: hidden;
-    position: absolute;
-    top: 16px;
-    right: 20px;
-  }
 
   .article-title {
     margin-top: 14px;

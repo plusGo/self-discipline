@@ -3,6 +3,7 @@ import {NzModalService} from 'ng-zorro-antd/modal';
 import {RegisterComponent} from '../register/register.component';
 import {ModalWidthConstant} from '../../../core/constant/modal-width.constant';
 import {LoginComponent} from '../login/login.component';
+import {UserTokenDto} from '../../../model/dto/user-token.dto';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ import {LoginComponent} from '../login/login.component';
   preserveWhitespaces: true
 })
 export class HeaderComponent implements OnInit {
-
+  user:UserTokenDto;
   constructor(private modalService: NzModalService) {
   }
 

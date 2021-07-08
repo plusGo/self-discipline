@@ -25,7 +25,7 @@ export class ArticleService {
 
   findBriefList(pageIndex = 0, pageSize = 20): Observable<ArticleBriefDto[]> {
     return HttpPlusClient.builder()
-      .url(`/api/articles/brief/list`)
+      .url(`/api/articles/recommend`)
       .params({pageIndex: `${pageIndex}`, pageSize: `${pageSize}`})
       .get();
   }
