@@ -29,12 +29,21 @@
           <input type="text" nz-input placeholder="全站搜索"/>
         </nz-input-group>
       </div>
-      <a [routerLink]="['/editor/drafts/new']">
+      <a (click)="createArticle()">
         <button class="edit-article hide-mobile" nzSize="small" nz-button nzType="primary">写文章</button>
       </a>
-      <div class="hide-mobile">
+      <div *ngIf="!token" class="hide-mobile">
         <button (click)="openLogin()" nzSize="small" nz-button nzType="link">登录</button>
         <button (click)="openRegister()" nzSize="small" nz-button nzType="link">注册</button>
+      </div>
+      <div class="clickable" *ngIf="token">
+        <app-user-avatar nz-dropdown [nzDropdownMenu]="loginMenu"></app-user-avatar>
+        <nz-dropdown-menu #loginMenu="nzDropdownMenu">
+          <ul nz-menu nzSelectable>
+            <li nz-menu-item>您好！{{token?.nickName}}</li>
+            <li nz-menu-item (click)="logout()">退出</li>
+          </ul>
+        </nz-dropdown-menu>
       </div>
       <a class="hide-pc mobile-user" nz-dropdown [nzDropdownMenu]="menu2">
         <i nz-icon nzType="user"></i>

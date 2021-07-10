@@ -6,6 +6,7 @@ import {NzModalRef} from 'ng-zorro-antd/modal';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {PasswordService} from '../../../core/service/biz/password.service';
 import {LoginService} from '../../../core/service/biz/login.service';
+import {AuthService} from '../../../../../projects/auth/src/lib/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private registerValidator: RegisterValidator,
               private loginService: LoginService,
               private modalRef: NzModalRef,
+              private authService: AuthService,
               private messageService: NzMessageService) {
     this.schema = {
       properties: {
@@ -68,10 +70,11 @@ export class LoginComponent implements OnInit, OnDestroy {
       password: PasswordService.encrypt(this.formRef.value.password)
     };
     this.state.submiting = true;
-    this.loginService.emailPasswordLogin(value).subscribe(() => {
+    this.loginService.emailPasswordLogin(value).subscribe((token) => {
       this.messageService.success('登录成功');
       this.modalRef.close(true);
       this.state.submiting = false;
+      this.authService.freshToken(token);
     }, () => this.state.submiting = false)
   }
 }

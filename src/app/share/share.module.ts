@@ -21,6 +21,8 @@ import {ArticleListBriefComponent} from './component/article-list-brief/article-
 import {NzTagModule} from 'ng-zorro-antd/tag';
 import {NzSkeletonModule} from 'ng-zorro-antd/skeleton';
 import {ArticleTagRenderComponent} from './component/article-tag-render/article-tag-render.component';
+import {UserAvatarComponent} from './component/user-avatar/user-avatar.component';
+import {NzAvatarModule} from 'ng-zorro-antd/avatar';
 
 
 export const ZORRO_MODULES = [
@@ -31,6 +33,7 @@ export const ZORRO_MODULES = [
   NzDropDownModule,
   NzPopoverModule,
   NzFormModule,
+  NzAvatarModule,
   NzSelectModule,
   NzUploadModule,
   NzTagModule,
@@ -42,7 +45,8 @@ export const COMPONENTS = [
   AuthImgComponent,
   LoginComponent,
   ArticleListBriefComponent,
-  ArticleTagRenderComponent];
+  ArticleTagRenderComponent,
+  UserAvatarComponent];
 export const PIPES = [AttachmentImgPipe];
 
 @NgModule({

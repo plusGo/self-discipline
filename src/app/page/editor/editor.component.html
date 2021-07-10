@@ -1,6 +1,7 @@
 <header class="editor-header">
   <div class="left-box"></div>
-  <input [formControl]="form.controls.title" maxlength="80" class="editor-title-input" type="text"/>
+  <input placeholder="输入文章标题..." [formControl]="form.controls.title" maxlength="80" class="editor-title-input"
+         type="text"/>
   <div class="right-box">
     <div class="status-text"></div>
     <button nz-button nzType="primary"
