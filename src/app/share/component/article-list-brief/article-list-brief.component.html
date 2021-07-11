@@ -15,8 +15,10 @@
       {{articleBrief?.briefContent}}
     </div>
     <div class="article-ops">
-      <div class="article-ops-item">
-        <i nz-icon nzType="like" nzTheme="outline"></i>
+      <div (click)="toggleLike()" class="article-ops-item">
+        <i *ngIf="loadingState.likeLoading" nz-icon nzType="loading" nzTheme="outline"></i>
+        <i *ngIf="!loadingState.likeLoading" [class.font-color-primary]="articleBrief?.isLiked" nz-icon nzType="like"
+           nzTheme="outline"></i>
         <span>{{articleBrief?.likeCount}}</span>
       </div>
       <div class="article-ops-item">

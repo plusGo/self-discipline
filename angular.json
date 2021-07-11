@@ -33,6 +33,11 @@
                 "glob": "**/*",
                 "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
                 "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/highlightjs/styles/",
+                "output": "/assets/code-styles/"
               }
             ],
             "styles": [
@@ -204,6 +209,46 @@
             "tsConfig": [
               "projects/auth/tsconfig.lib.json",
               "projects/auth/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "markdown": {
+      "projectType": "library",
+      "root": "projects/markdown",
+      "sourceRoot": "projects/markdown/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/markdown/tsconfig.lib.json",
+            "project": "projects/markdown/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/markdown/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/markdown/src/test.ts",
+            "tsConfig": "projects/markdown/tsconfig.spec.json",
+            "karmaConfig": "projects/markdown/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/markdown/tsconfig.lib.json",
+              "projects/markdown/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

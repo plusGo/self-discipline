@@ -36,7 +36,7 @@
         <button (click)="openLogin()" nzSize="small" nz-button nzType="link">登录</button>
         <button (click)="openRegister()" nzSize="small" nz-button nzType="link">注册</button>
       </div>
-      <div class="clickable" *ngIf="token">
+      <div class="clickable" style="padding-left: 16px" *ngIf="token">
         <app-user-avatar nz-dropdown [nzDropdownMenu]="loginMenu"></app-user-avatar>
         <nz-dropdown-menu #loginMenu="nzDropdownMenu">
           <ul nz-menu nzSelectable>
@@ -45,12 +45,12 @@
           </ul>
         </nz-dropdown-menu>
       </div>
-      <a class="hide-pc mobile-user" nz-dropdown [nzDropdownMenu]="menu2">
+      <a *ngIf="!token" class="hide-pc mobile-user" nz-dropdown [nzDropdownMenu]="menu2">
         <i nz-icon nzType="user"></i>
         <nz-dropdown-menu #menu2="nzDropdownMenu">
           <ul nz-menu nzSelectable>
-            <li nz-menu-item>登录</li>
-            <li nz-menu-item>注册</li>
+            <li (click)="openLogin()" nz-menu-item>登录</li>
+            <li (click)="openRegister()" nz-menu-item>注册</li>
           </ul>
         </nz-dropdown-menu>
       </a>

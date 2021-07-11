@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-article-tag-render',
@@ -7,7 +7,7 @@ import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChan
   changeDetection: ChangeDetectionStrategy.OnPush,
   preserveWhitespaces: true
 })
-export class ArticleTagRenderComponent implements OnInit, OnChanges {
+export class ArticleTagRenderComponent {
   @Input()
   mode: 'text' | 'tag' = 'text';
 
@@ -17,11 +17,5 @@ export class ArticleTagRenderComponent implements OnInit, OnChanges {
   constructor() {
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-        throw new Error('Method not implemented.');
-    }
-
-  ngOnInit(): void {
-  }
 
 }

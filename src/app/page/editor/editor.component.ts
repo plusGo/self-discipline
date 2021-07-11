@@ -6,11 +6,7 @@ import {NzUploadFile} from 'ng-zorro-antd/upload';
 import {AttachmentService} from '../../core/service/biz/attachment.service';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {ArticleService} from '../../core/service/biz/article.service';
-
-declare const bytemd: any;
-
-declare const bytemdPluginGfm: any;
-declare const bytemdPluginHighlight: any;
+import {MarkdownEditorComponent} from '../../../../projects/markdown/src/lib/markdown-editor/markdown-editor.component';
 
 @Component({
   selector: 'app-editor',
@@ -18,12 +14,11 @@ declare const bytemdPluginHighlight: any;
   styleUrls: ['./editor.component.scss']
 })
 export class EditorComponent implements OnInit, AfterViewInit {
-  @ViewChild('main') mainRef: ElementRef;
   form: FormGroup;
-
-
   uploading = false;
   submiting = false;
+
+  @ViewChild('editor') editor: MarkdownEditorComponent;
 
   constructor(private fb: FormBuilder,
               private messageService: NzMessageService,
@@ -43,19 +38,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const plugins = [bytemdPluginGfm(), bytemdPluginHighlight()];
 
-    const editor = new bytemd.Editor({
-      target: this.mainRef.nativeElement,
-      props: {
-        value: '# heading\n\nparagraph\n\n> blockquote',
-        plugins,
-      },
-    });
-
-    editor.$on('change', (e) => {
-      this.form.patchValue({markContent: e.detail.value});
-    });
   }
 
   beforeUpload = (file: NzUploadFile): boolean => {
@@ -79,5 +62,12 @@ export class EditorComponent implements OnInit, AfterViewInit {
       this.submiting = false;
       this.messageService.success('发布成功');
     }, () => this.submiting = false);
+  }
+
+  onVisibleChange(visible: boolean) {
+    if(visible){
+      const briefContent = this.editor.getBriefContent(100);
+      this.form.controls.briefContent.setValue(briefContent);
+    }
   }
 }
