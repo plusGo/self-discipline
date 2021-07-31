@@ -24,6 +24,7 @@ import {ArticleTagRenderComponent} from './component/article-tag-render/article-
 import {UserAvatarComponent} from './component/user-avatar/user-avatar.component';
 import {NzAvatarModule} from 'ng-zorro-antd/avatar';
 import {NzSpinModule} from 'ng-zorro-antd/spin';
+import {NzEmptyModule} from 'ng-zorro-antd/empty';
 
 
 export const ZORRO_MODULES = [
@@ -38,6 +39,7 @@ export const ZORRO_MODULES = [
   NzSelectModule,
   NzUploadModule,
   NzTagModule,
+  NzEmptyModule,
   NzSpinModule,
   NzSkeletonModule
 ];

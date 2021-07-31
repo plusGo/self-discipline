@@ -11,6 +11,7 @@ import {ROUTER_CONFIG} from './app.route';
 import {CoreModule} from './core/core.module';
 import {NormalModule} from './normal/normal.module';
 import {ShareModule} from './share/share.module';
+import {AppScrollService} from './core/service/common/app-scroll.service';
 
 registerLocaleData(zh);
 
@@ -32,4 +33,8 @@ registerLocaleData(zh);
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
+  constructor(private appScrollService: AppScrollService) {
+    this.appScrollService.init();
+  }
 }

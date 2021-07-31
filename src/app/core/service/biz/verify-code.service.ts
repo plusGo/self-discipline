@@ -10,7 +10,7 @@ export class VerifyCodeService {
 
   sendEmailVerifyCode(email: string): Observable<CommonResponseDto> {
     return HttpPlusClient.builder()
-      .url(`/api/verifyCode/email/${email}`)
+      .url(`/article-server/verifyCode/email/${email}`)
       .post();
   }
 }

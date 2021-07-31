@@ -1,45 +1,29 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  OnDestroy,
-  OnInit,
-  ViewChild
-} from '@angular/core';
-import {fromEvent, Subject} from 'rxjs';
+import {Component, ElementRef, OnDestroy} from '@angular/core';
+import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {HeaderComponent} from '../../share/component/header/header.component';
+import {AppScrollService} from '../../core/service/common/app-scroll.service';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  preserveWhitespaces: true
 })
-export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
-  private static VISIBLE_SCROLL_INSTANCE = 80;
+export class LayoutComponent implements OnDestroy {
+  private static VISIBLE_SCROLL_INSTANCE = 120;
   showHeader = true;
-
-  @ViewChild(HeaderComponent, {read: ElementRef}) headerElementRef: ElementRef;
   private destroy$ = new Subject<void>();
 
   constructor(private hostElementRef: ElementRef,
-              private changeDetectorRef: ChangeDetectorRef) {
-  }
-
-  ngOnInit(): void {
-  }
-
-  ngAfterViewInit(): void {
-    fromEvent(this.hostElementRef.nativeElement, 'scroll')
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(() => {
-        this.showHeader = this.hostElementRef.nativeElement.scrollTop <= LayoutComponent.VISIBLE_SCROLL_INSTANCE;
-        this.changeDetectorRef.markForCheck();
-      })
+              private appScrollService: AppScrollService) {
+    this.appScrollService.scrollEvent$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(event => {
+      if (event.scrollTop <= LayoutComponent.VISIBLE_SCROLL_INSTANCE) {
+        this.showHeader = true;
+      } else {
+        this.showHeader = event.direction === 'up';
+      }
+    })
   }
 
   ngOnDestroy(): void {

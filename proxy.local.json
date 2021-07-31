@@ -1,9 +1,6 @@
 {
-  "/api": {
-    "target": "http://localhost:8088",
-    "secure": false,
-    "pathRewrite": {
-      "^/api": ""
-    }
+  "/article-server": {
+    "target": "http://localhost:8081",
+    "secure": false
   }
 }

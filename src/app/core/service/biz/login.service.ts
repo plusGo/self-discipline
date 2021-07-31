@@ -3,6 +3,9 @@ import {Observable} from 'rxjs';
 import {HttpPlusClient} from 'ng-http-plus';
 import {UserTokenDto} from '../../../model/dto/user-token.dto';
 import {EmailPasswordRequest} from '../../../model/request/email-password.request';
+import {NzModalService} from 'ng-zorro-antd/modal';
+import {LoginComponent} from '../../../share/component/login/login.component';
+import {ModalWidthConstant} from '../../constant/modal-width.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +13,21 @@ import {EmailPasswordRequest} from '../../../model/request/email-password.reques
 export class LoginService {
 
 
+  constructor(private modalService: NzModalService) {
+  }
 
-  public emailPasswordLogin(request: EmailPasswordRequest): Observable<UserTokenDto> {
+  openLoginModal(): void {
+    this.modalService.create({
+      nzTitle: '登录',
+      nzContent: LoginComponent,
+      nzWidth: ModalWidthConstant.SMALL_WIDTH,
+      nzFooter: null
+    })
+  }
+
+  emailPasswordLogin(request: EmailPasswordRequest): Observable<UserTokenDto> {
     return HttpPlusClient.builder()
-      .url('/api/login/email/password')
+      .url('/article-server/login/email/password')
       .body(request)
       .post();
   }

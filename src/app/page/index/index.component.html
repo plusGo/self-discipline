@@ -1,14 +1,17 @@
 <div class="index-content">
   <div class="article-wrapper">
-    <nz-skeleton *ngIf="!articleBriefs.length"></nz-skeleton>
+    <nz-skeleton *ngIf="loadingState.initial"></nz-skeleton>
+    <nz-empty nzNotFoundContent="空空如也 ~ ~" *ngIf="!loadingState.initial && !articleBriefs.length"></nz-empty>
     <ng-container *ngIf="articleBriefs.length">
-      <app-article-list-brief [articleBrief]="articleBrief"
+      <app-article-list-brief (click)="goToDetail(articleBrief)" [articleBrief]="articleBrief"
                               *ngFor="let articleBrief of articleBriefs"></app-article-list-brief>
     </ng-container>
   </div>
   <div class="right-wrapper">
     <div class="advert">
-      <img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/af093b6744c04c05b116a664013f50c4~tplv-k3u1fbpfcp-watermark.image" alt="">
+      <img
+        src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/af093b6744c04c05b116a664013f50c4~tplv-k3u1fbpfcp-watermark.image"
+        alt="">
     </div>
   </div>
 

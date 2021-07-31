@@ -9,7 +9,7 @@ export class LikeService {
 
   likeByCurrentUser(targetId: string, likeType: LikeTypeEnum): Observable<void> {
     return HttpPlusClient.builder()
-      .url(`/api/likes`)
+      .url(`/article-server/likes`)
       .params({
         targetId, likeType
       })
@@ -18,7 +18,7 @@ export class LikeService {
 
   unLikeByCurrentUser(targetId: string, likeType: LikeTypeEnum): Observable<void> {
     return HttpPlusClient.builder()
-      .url(`/api/likes`)
+      .url(`/article-server/likes`)
       .params({
         targetId, likeType
       })
@@ -27,21 +27,21 @@ export class LikeService {
 
   save(like: LikeDto): Observable<void> {
     return HttpPlusClient.builder()
-      .url(`/api/likes`)
+      .url(`/article-server/likes`)
       .body(like)
       .post();
   }
 
   delete(likeId: string): Observable<void> {
     return HttpPlusClient.builder()
-      .url(`/api/likes`)
+      .url(`/article-server/likes`)
       .params({likeId})
       .delete();
   }
 
   count(targetId: string): Observable<number> {
     return HttpPlusClient.builder()
-      .url(`/api/likes`)
+      .url(`/article-server/likes`)
       .responseType(HttpResponseType.TEXT)
       .get();
   }

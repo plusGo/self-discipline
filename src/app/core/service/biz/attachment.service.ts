@@ -12,7 +12,7 @@ export class AttachmentService {
     const formData = new FormData();
     files.forEach(file => formData.append('files', file));
     return HttpPlusClient.builder()
-      .url('/api/attachments/upload')
+      .url('/article-server/attachments/upload')
       .body(formData)
       .post();
   }
@@ -25,14 +25,14 @@ export class AttachmentService {
 
   download(attachmentId: string): Observable<Blob> {
     return HttpPlusClient.builder()
-      .url(`/api/attachments/download/${attachmentId}`)
+      .url(`/article-server/attachments/download/${attachmentId}`)
       .responseType(HttpResponseType.BLOB)
       .get();
   }
 
   base64(attachmentId: string): Observable<String> {
     return HttpPlusClient.builder()
-      .url(`/api/attachments/base64/${attachmentId}`)
+      .url(`/article-server/attachments/base64/${attachmentId}`)
       .responseType(HttpResponseType.TEXT)
       .get();
   }

@@ -11,14 +11,14 @@ import {CommonResponseDto} from '../../../model/dto/common-response.dto';
 export class RegisterService {
   public emailRegister(emailRegisterRequest: EmailRegisterRequest): Observable<UserPo> {
     return HttpPlusClient.builder()
-      .url('/api/register/email')
+      .url('/article-server/register/email')
       .body(emailRegisterRequest)
       .post();
   }
 
   emailExists(email: string): Observable<CommonResponseDto> {
     return HttpPlusClient.builder()
-      .url(`/api/register/email/${email}`)
+      .url(`/article-server/register/email/${email}`)
       .get();
   }
 }

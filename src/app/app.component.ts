@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {HttpPlusConfig} from 'ng-http-plus';
+import {LoginService} from './core/service/biz/login.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,9 @@ import {HttpPlusConfig} from 'ng-http-plus';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-   static AUTHORIZATION = 'Authorization';
+  static AUTHORIZATION = 'Authorization';
 
-  constructor() {
+  constructor(private loginService: LoginService) {
     HttpPlusConfig.builder()
       .baseUrl('')
       .addInterceptor({
@@ -27,6 +28,12 @@ export class AppComponent {
             window.sessionStorage.setItem(AppComponent.AUTHORIZATION, token);
           }
         }
-      });
+      }).addResponseInterceptor((res) => {
+        if (res.status === 401 || res.status === 403) {
+          this.loginService.openLoginModal();
+        }
+        return res;
+      }
+    );
   }
 }

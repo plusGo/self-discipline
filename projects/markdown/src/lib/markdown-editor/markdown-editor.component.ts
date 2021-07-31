@@ -28,6 +28,8 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
   @ViewChild('bytemdHost') hostRef: ElementRef;
   editor: Editor;
 
+  markContent: string;
+
   constructor(private attachmentService: AttachmentService) {
   }
 
@@ -57,7 +59,7 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
           return this.attachmentService.upload(files).pipe(
             map(res => res.map(item => {
                 return {
-                  url: `/api/attachments/download/${item.id}`,
+                  url: `/article-server/attachments/download/${item.id}`,
                   alt: item.name,
                   title: item.name,
                 }
@@ -69,12 +71,16 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
     });
 
     this.editor.$on('change', (e) => {
-      console.log(e);
+      this.markContent = e.detail.value;
       this.editor.$set({value: e.detail.value});
     });
   }
 
   getBriefContent(length: number): string {
     return this.hostRef.nativeElement.querySelector('.markdown-body').textContent?.substring(0, length);
+  }
+
+  getMarkContent(): string {
+    return this.markContent;
   }
 }

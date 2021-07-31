@@ -7,6 +7,7 @@ import {UserTokenDto} from '../../../model/dto/user-token.dto';
 import {AuthService} from '../../../../../projects/auth/src/lib/auth.service';
 import {AuthCheckService} from '../../../core/service/auth/auth-check.service';
 import {Router} from '@angular/router';
+import {LoginService} from '../../../core/service/biz/login.service';
 
 @Component({
   selector: 'app-header',
@@ -22,6 +23,7 @@ export class HeaderComponent implements OnInit {
               private changeDetectorRef: ChangeDetectorRef,
               private authCheckService: AuthCheckService,
               private router: Router,
+              private loginService: LoginService,
               private authService: AuthService) {
     this.authService.authToken$.subscribe(token => {
       this.token = token;
@@ -42,12 +44,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openLogin() {
-    this.modalService.create({
-      nzTitle: '登录',
-      nzContent: LoginComponent,
-      nzWidth: ModalWidthConstant.SMALL_WIDTH,
-      nzFooter: null
-    })
+    this.loginService.openLoginModal();
   }
 
   createArticle(): void {
@@ -56,7 +53,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  logout() :void{
+  logout(): void {
     this.authService.logout();
   }
 }

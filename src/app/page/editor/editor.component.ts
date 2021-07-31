@@ -55,6 +55,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
   submit(): void {
     const data = {
       ...this.form.value,
+      markContent:this.editor.getMarkContent(),
       tags: this.form.value.tags.join(',')
     };
     this.submiting = true;

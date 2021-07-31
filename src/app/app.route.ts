@@ -7,6 +7,7 @@ export const ROUTER_CONFIG: Routes = [
   {
     path: '', component: LayoutComponent, children: [
       {path: 'index', loadChildren: () => import('./page/index/index.module').then(m => m.IndexModule)},
+      {path: 'detail', loadChildren: () => import('./page/detail/detail.module').then(m => m.DetailModule)},
     ]
   },
   {
