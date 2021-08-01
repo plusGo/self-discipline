@@ -18,6 +18,7 @@ registerLocaleData(zh);
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     BrowserModule,

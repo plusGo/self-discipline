@@ -1,4 +1,5 @@
-@import "variable";
+@import "src/style/variable";
+@import "flex";
 
 .text-horizontal-divider {
   color: hsla(0, 0%, 59.2%, .2);
@@ -12,3 +13,4 @@
 .font-color-primary {
   color: $primaryColor;
 }
+

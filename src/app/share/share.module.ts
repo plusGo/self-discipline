@@ -25,6 +25,7 @@ import {UserAvatarComponent} from './component/user-avatar/user-avatar.component
 import {NzAvatarModule} from 'ng-zorro-antd/avatar';
 import {NzSpinModule} from 'ng-zorro-antd/spin';
 import {NzEmptyModule} from 'ng-zorro-antd/empty';
+import { ArticleCommentEditorComponent } from './component/article-comment-editor/article-comment-editor.component';
 
 
 export const ZORRO_MODULES = [
@@ -51,6 +52,7 @@ export const COMPONENTS = [
   ArticleListBriefComponent,
   ArticleTagRenderComponent,
   UserAvatarComponent,
+  ArticleCommentEditorComponent
 ];
 export const PIPES = [AttachmentImgPipe];
 

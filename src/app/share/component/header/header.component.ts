@@ -2,7 +2,6 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@an
 import {NzModalService} from 'ng-zorro-antd/modal';
 import {RegisterComponent} from '../register/register.component';
 import {ModalWidthConstant} from '../../../core/constant/modal-width.constant';
-import {LoginComponent} from '../login/login.component';
 import {UserTokenDto} from '../../../model/dto/user-token.dto';
 import {AuthService} from '../../../../../projects/auth/src/lib/auth.service';
 import {AuthCheckService} from '../../../core/service/auth/auth-check.service';
@@ -55,5 +54,9 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.authService.logout();
+  }
+
+  navigateToUserCenter(): void {
+    this.router.navigate([`/user/${this.token.userId}`]);
   }
 }

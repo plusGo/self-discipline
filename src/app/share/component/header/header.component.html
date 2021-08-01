@@ -16,6 +16,9 @@
     </a>
 
     <ul class="hide-mobile" nz-menu nzMode="horizontal">
+      <li nz-menu-item>
+        设置
+      </li>
       <li nz-menu-item>首页</li>
       <li nz-menu-item>分享</li>
     </ul>
@@ -40,6 +43,10 @@
         <app-user-avatar nz-dropdown [nzDropdownMenu]="loginMenu"></app-user-avatar>
         <nz-dropdown-menu #loginMenu="nzDropdownMenu">
           <ul nz-menu nzSelectable>
+            <li (click)="navigateToUserCenter()" nz-menu-item class="flex items-center">
+              <i nz-icon nzType="setting" nzTheme="outline"></i>
+              设置
+            </li>
             <li nz-menu-item>您好！{{token?.nickName}}</li>
             <li nz-menu-item (click)="logout()">退出</li>
           </ul>
