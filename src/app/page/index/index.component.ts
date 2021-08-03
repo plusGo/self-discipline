@@ -3,6 +3,7 @@ import {ArticleService} from '../../core/service/biz/article.service';
 import {ArticleBriefDto} from '../../model/dto/article-brief.dto';
 import {fromEvent} from 'rxjs';
 import {Router} from '@angular/router';
+import {PortalArticleService} from '../../core/service/biz/portal/portal-article.service';
 
 @Component({
   selector: 'app-index',
@@ -18,7 +19,7 @@ export class IndexComponent implements OnInit, AfterViewInit {
     loadingMore: false
   };
 
-  constructor(private articleService: ArticleService,
+  constructor(private portalArticleService: PortalArticleService,
               private changeDetectorRef: ChangeDetectorRef,
               private router: Router,
               private elementRef: ElementRef) {
@@ -34,7 +35,7 @@ export class IndexComponent implements OnInit, AfterViewInit {
 
   loadMore(index = 0): void {
     this.loadingState.loadingMore = true;
-    this.articleService.findBriefList(index).subscribe(res => {
+    this.portalArticleService.findRecommendList(index).subscribe(res => {
       this.articleBriefs = res;
       this.loadingState.initial = false;
       this.loadingState.loadingMore = true;
@@ -48,6 +49,6 @@ export class IndexComponent implements OnInit, AfterViewInit {
   }
 
   goToDetail(articleBrief: ArticleBriefDto): void {
-    this.router.navigate([`/detail/${articleBrief.articleId}`])
+    this.router.navigate([`/detail/${articleBrief.id}`])
   }
 }

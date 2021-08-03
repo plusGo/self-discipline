@@ -13,7 +13,7 @@
         </div>
         <button class="flex-none" nz-button>关注</button>
       </div>
-      <div class="mb-12 text-6xl leading-normal font-bold">{{articleDetail?.articleTitle}}</div>
+      <div class="mb-12 text-6xl leading-normal font-bold">{{articleDetail?.title}}</div>
       <app-md-viewer *ngIf="articleDetail?.markContent"
                      [markContent]="articleDetail?.markContent"></app-md-viewer>
     </div>
@@ -21,7 +21,7 @@
       <div class="flex  rounded-sm p-6 flex-col">
         <div class="bg-gray-100 flex rounded p-6">
           <nz-avatar class="flex-none mr-6 mt-4" nzIcon="user"></nz-avatar>
-          <app-article-comment-editor class="w-full"></app-article-comment-editor>
+          <app-article-comment-editor [targetId]="articleDetail?.id" class="w-full"></app-article-comment-editor>
         </div>
         <app-comment-list class="ml-12"></app-comment-list>
       </div>

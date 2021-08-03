@@ -1,7 +1,8 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
-import {ArticleService} from '../../core/service/biz/article.service';
 import {ActivatedRoute} from '@angular/router';
 import {ArticleDetailDto} from '../../model/dto/article-detail.dto';
+import {PortalArticleService} from '../../core/service/biz/portal/portal-article.service';
+import {PortalCommentService} from '../../core/service/biz/portal/portal-comment.service';
 
 @Component({
   selector: 'app-detail',
@@ -17,7 +18,8 @@ export class DetailComponent implements OnInit {
 
   @HostBinding('class.portal-content-container') classBiding = true;
 
-  constructor(private articleService: ArticleService,
+  constructor(private portalArticleService: PortalArticleService,
+              private portalCommentService: PortalCommentService,
               private route: ActivatedRoute) {
     this.route.paramMap.subscribe(map => {
       const id = map.get('id');
@@ -32,7 +34,7 @@ export class DetailComponent implements OnInit {
 
   loadData(id: string) {
     this.loadingState.loadingArticle = true;
-    this.articleService.findDetail(id).subscribe(res => {
+    this.portalArticleService.getDetailById(id).subscribe(res => {
       this.articleDetail = res;
       this.loadingState.loadingArticle = false;
     }, () => {

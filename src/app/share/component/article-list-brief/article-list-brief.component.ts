@@ -34,14 +34,14 @@ export class ArticleListBriefComponent implements OnInit {
     this.loadingState.likeLoading = true;
 
     if (this.articleBrief.isLiked) {
-      this.likeService.unLikeByCurrentUser(this.articleBrief.articleId, LikeTypeEnum.ARTICLE).subscribe(() => {
+      this.likeService.unLikeByCurrentUser(this.articleBrief.id, LikeTypeEnum.ARTICLE).subscribe(() => {
         this.loadingState.likeLoading = false;
         this.articleBrief.isLiked = false;
         this.articleBrief.likeCount--;
         this.changeDetectorRef.markForCheck();
       }, () => this.loadingState.likeLoading = false)
     } else {
-      this.likeService.likeByCurrentUser(this.articleBrief.articleId, LikeTypeEnum.ARTICLE).subscribe(() => {
+      this.likeService.likeByCurrentUser(this.articleBrief.id, LikeTypeEnum.ARTICLE).subscribe(() => {
         this.loadingState.likeLoading = false;
         this.articleBrief.isLiked = true;
         this.articleBrief.likeCount++;
