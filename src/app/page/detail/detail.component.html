@@ -21,9 +21,9 @@
       <div class="flex  rounded-sm p-6 flex-col">
         <div class="bg-gray-100 flex rounded p-6">
           <nz-avatar class="flex-none mr-6 mt-4" nzIcon="user"></nz-avatar>
-          <app-article-comment-editor [targetId]="articleDetail?.id" class="w-full"></app-article-comment-editor>
+          <app-article-comment-editor (stateChange)="onCommentChange($event)" [targetId]="articleDetail?.id" class="w-full"></app-article-comment-editor>
         </div>
-        <app-comment-list class="ml-12"></app-comment-list>
+        <app-comment-list [articleId]="articleDetail?.id" [commentList]="commentList"  class="ml-12"></app-comment-list>
       </div>
     </div>
   </article>

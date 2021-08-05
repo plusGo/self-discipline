@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {ArticleDetailDto} from '../../model/dto/article-detail.dto';
 import {PortalArticleService} from '../../core/service/biz/portal/portal-article.service';
 import {PortalCommentService} from '../../core/service/biz/portal/portal-comment.service';
+import {CommentDto} from '../../model/dto/comment.dto';
 
 @Component({
   selector: 'app-detail',
@@ -11,9 +12,11 @@ import {PortalCommentService} from '../../core/service/biz/portal/portal-comment
 })
 export class DetailComponent implements OnInit {
   articleDetail: ArticleDetailDto;
+  commentList: CommentDto[];
 
   loadingState = {
-    loadingArticle: true
+    loadingArticle: true,
+    loadingComment: true
   };
 
   @HostBinding('class.portal-content-container') classBiding = true;
@@ -39,7 +42,18 @@ export class DetailComponent implements OnInit {
       this.loadingState.loadingArticle = false;
     }, () => {
       this.loadingState.loadingArticle = false;
-    })
+    });
+
+    this.loadingState.loadingComment = true;
+    this.portalArticleService.findCommentList(id).subscribe(res => {
+      this.commentList = res;
+      this.loadingState.loadingComment = false;
+    }, () => {
+      this.loadingState.loadingComment = false;
+    });
   }
 
+  onCommentChange(targetId: string): void {
+
+  }
 }

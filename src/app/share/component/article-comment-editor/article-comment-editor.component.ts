@@ -1,4 +1,12 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import {PortalCommentService} from '../../../core/service/biz/portal/portal-comment.service';
 import {NzMessageService} from 'ng-zorro-antd/message';
 
@@ -22,6 +30,9 @@ export class ArticleCommentEditorComponent implements OnInit {
   @Input()
   repliedTargetId: string;
 
+  @Output()
+  stateChange = new EventEmitter<string>();
+
   constructor(private portalCommentService: PortalCommentService,
               private changeDetectorRef: ChangeDetectorRef,
               private messageService: NzMessageService) {
@@ -34,10 +45,14 @@ export class ArticleCommentEditorComponent implements OnInit {
     this.loading = true;
     this.portalCommentService.comment({
       content: this.commentVal,
-      targetId: this.targetId
+      targetId: this.targetId,
+      repliedTargetId: this.repliedTargetId,
+      repliedUsersId: this.repliedUsersId,
     }).subscribe(() => {
       this.loading = false;
       this.messageService.success('评论成功');
+      this.commentVal = '';
+      this.stateChange.emit(this.targetId);
       this.changeDetectorRef.markForCheck();
     }, () => this.loading = false);
   }

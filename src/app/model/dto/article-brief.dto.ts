@@ -5,7 +5,7 @@ import {UserSocialInfoDto} from './user-social-info.dto';
 export class ArticleBriefDto {
   id?: string;
   title?: string;
-  tags?: string;
+  tags?: string[];
   briefContent?: string;
   headImageId?: string;
   category?: ArticleCategoryEnum;
